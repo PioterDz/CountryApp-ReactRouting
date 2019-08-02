@@ -5,12 +5,11 @@ export const SEARCH_COUNTRIES = 'SEARCH_COUNTRIES';
 export const SET_CONTINENT = 'SET_CONTINENT';
 export const NUMBER_OF_COUNTRIES = 'NUMBER_OF_COUNTRIES';
 export const GET_PAGE = 'GET_PAGE';
-export const NUMBER_OF_PAGES = 'NUMBER_OF_PAGES';
 
 
 export function getCountries() {
     return {
-        type: GET_COUNTRIES
+        type: GET_COUNTRIES,
     }
 }
 
@@ -56,11 +55,6 @@ export function getPage(number) {
     }
 }
 
-export function getNumberOfPages() {
-    return {
-        type: NUMBER_OF_PAGES
-    }
-}
 
 
 

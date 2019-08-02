@@ -10,9 +10,10 @@ class ListButtons extends Component {
     }
 
     render() {
+        const arrayOfNumbersToChoose = [5, 10, 15, 20];
         return (
         <div className="btn-group">
-            { this.props.listBtns.map((page, id) => 
+            { arrayOfNumbersToChoose.map((page, id) => 
                 <button key={id} id={id} value={page} className="btn btn-default" onClick={this.handlePagBtns.bind(this)}>{page}</button>
             )}
         </div>

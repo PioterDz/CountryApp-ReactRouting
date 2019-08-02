@@ -1,13 +1,12 @@
-import { GET_COUNTRIES, GET_COUNTRY, SEARCH_COUNTRIES, DELETE_COUNTRY, SET_CONTINENT, NUMBER_OF_COUNTRIES, GET_PAGE, NUMBER_OF_PAGES } from '../actions/action-countries';
+import { GET_COUNTRIES, GET_COUNTRY, SEARCH_COUNTRIES, DELETE_COUNTRY, SET_CONTINENT, NUMBER_OF_COUNTRIES, GET_PAGE } from '../actions/action-countries';
 import countriesData from '../data/countries.json';
 
 const initialState = {
     countries: countriesData,
     selectedCountry: {},
-    visibleCountries: [],
-    numberOfCountriesOnPage: [5, 10, 15, 20],
+    visibleCountries: countriesData.filter(country => country.id > 0 && country.id <= 5),
     actuallPage: 1,
-    numberOfPages: []
+    numberOfCountriesChoosed: 5
 };
 
 const countriesReducer = function (state = initialState, action) {
@@ -16,7 +15,7 @@ const countriesReducer = function (state = initialState, action) {
             return Object.assign({}, state, {countries: state.countries});
 
         case GET_COUNTRY:
-            const selectedCountry = state.countries.find(country => country.id === action.id);
+            const selectedCountry= state.countries.find(country => country.id === parseInt(action.id));
             return Object.assign({}, state, {selectedCountry});
 
         case SEARCH_COUNTRIES:
@@ -33,17 +32,32 @@ const countriesReducer = function (state = initialState, action) {
             return Object.assign({}, state, {visibleCountries: continentCountries});
 
         case NUMBER_OF_COUNTRIES:
+            const numberToDisplayChoosed = parseInt(action.value);
             const countriesToDisplay = state.countries.filter(country => country.id > 0 && country.id <= action.value);
-            return Object.assign({}, state, {visibleCountries: countriesToDisplay});
+            return Object.assign({}, state, {visibleCountries: countriesToDisplay, numberOfCountriesChoosed: numberToDisplayChoosed});
 
         case GET_PAGE:
-            const selectedPage = action.number;
-            return Object.assign({}, state, {actuallPage: selectedPage});
+            const selectedPage = parseInt(action.number);
+            let displayCountries = [];
 
-        case NUMBER_OF_PAGES:
-            const countNumberOfPages = Math.ceil(state.countries.length / state.visibleCountries.length);
-            console.log(state.countries.length, state.visibleCountries.length, 'length');
-            return Object.assign({}, state, {numberOfPages: countNumberOfPages});
+            switch (selectedPage) {
+                case 1:
+                    displayCountries = state.countries.filter(country => country.id > 0 && country.id <= 5);
+                    break;
+                case 2:
+                    displayCountries = state.countries.filter(country => country.id > 5 && country.id <= 10);
+                    break;
+                case 3:
+                    displayCountries = state.countries.filter(country => country.id > 10 && country.id <= 15);
+                    break;
+                case 4:
+                    displayCountries = state.countries.filter(country => country.id > 15 && country.id <= 20);
+                    break;
+                default:
+                    displayCountries = state.countries.filter(country => country.id > 0 && country.id <= 5);
+            }
+
+            return Object.assign({}, state, {actuallPage: selectedPage, visibleCountries: displayCountries});
 
         default:
             return state;
