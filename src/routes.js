@@ -11,7 +11,7 @@ import ContinentsContainer from './containers/continents-container.component';
 export default (
     <Route path='/' component={Navigation}>
         <IndexRoute component={Home}/>
-        <Route path='countries' >
+        <Route path='countries'>
             <IndexRoute component={CountryFlagContainer}/>
             <Route path='country/:id' component={CountryDetailsContainer}/>
         </Route>

@@ -3,6 +3,9 @@ export const GET_COUNTRY = 'GET_COUNTRY';
 export const DELETE_COUNTRY = 'DELETE_COUNTRY';
 export const SEARCH_COUNTRIES = 'SEARCH_COUNTRIES';
 export const SET_CONTINENT = 'SET_CONTINENT';
+export const NUMBER_OF_COUNTRIES = 'NUMBER_OF_COUNTRIES';
+export const GET_PAGE = 'GET_PAGE';
+export const NUMBER_OF_PAGES = 'NUMBER_OF_PAGES';
 
 
 export function getCountries() {
@@ -38,4 +41,28 @@ export function setContinent(name) {
         name
     }
 }
+
+export function numberOfCountries(value) {
+    return {
+        type: NUMBER_OF_COUNTRIES,
+        value
+    }
+}
+
+export function getPage(number) {
+    return {
+        type: GET_PAGE,
+        number
+    }
+}
+
+export function getNumberOfPages() {
+    return {
+        type: NUMBER_OF_PAGES
+    }
+}
+
+
+
+
 

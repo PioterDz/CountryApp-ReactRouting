@@ -3,7 +3,7 @@ import styles from '../country.css';
 
 const CountryDetails = (props) => (
     <div className="country-wrapper" style={styles}>
-        <header>
+        <header style={styles}>
             <img className="country-photo" src={props.country.imageUrl} style={styles} alt="country" />
         </header>
         <div className="country-info" style={styles}>
