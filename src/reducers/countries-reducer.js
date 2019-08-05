@@ -33,31 +33,11 @@ const countriesReducer = function (state = initialState, action) {
 
         case NUMBER_OF_COUNTRIES:
             const numberToDisplayChoosed = parseInt(action.value);
-            const countriesToDisplay = state.countries.filter(country => country.id > 0 && country.id <= action.value);
-            return Object.assign({}, state, {visibleCountries: countriesToDisplay, numberOfCountriesChoosed: numberToDisplayChoosed});
+            return Object.assign({}, state, {numberOfCountriesChoosed: numberToDisplayChoosed});
 
         case GET_PAGE:
             const selectedPage = parseInt(action.number);
-            let displayCountries = [];
-
-            switch (selectedPage) {
-                case 1:
-                    displayCountries = state.countries.filter(country => country.id > 0 && country.id <= 5);
-                    break;
-                case 2:
-                    displayCountries = state.countries.filter(country => country.id > 5 && country.id <= 10);
-                    break;
-                case 3:
-                    displayCountries = state.countries.filter(country => country.id > 10 && country.id <= 15);
-                    break;
-                case 4:
-                    displayCountries = state.countries.filter(country => country.id > 15 && country.id <= 20);
-                    break;
-                default:
-                    displayCountries = state.countries.filter(country => country.id > 0 && country.id <= 5);
-            }
-
-            return Object.assign({}, state, {actuallPage: selectedPage, visibleCountries: displayCountries});
+            return Object.assign({}, state, {actuallPage: selectedPage});
 
         default:
             return state;

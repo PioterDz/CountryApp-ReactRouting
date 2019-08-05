@@ -39,8 +39,17 @@ class CountryFlagContainer extends Component {
                     <input type="text" onChange={this.search.bind(this)}/>
                 </div>
                 <ListButtons updateNrOfCountries={this.updateNrOfCountries.bind(this)} />
-                <PageButtons numberOfStateCountries={this.props.countries} numberOfCountriesChoosed={this.props.numberOfCountriesChoosed} updatePage={this.updatePageNumber.bind(this)} />
-                <CountryFlagList countries={this.props.visibleCountries} deleteCountry={this.deleteCountry.bind(this)} />
+                <PageButtons 
+                numberOfStateCountries={this.props.countries}
+                numberOfCountriesChoosed={this.props.numberOfCountriesChoosed} 
+                updatePage={this.updatePageNumber.bind(this)} 
+                />
+                <CountryFlagList 
+                numberChoosed={this.props.numberOfCountriesChoosed}
+                actuallPage={this.props.actuallPage}
+                countries={this.props.visibleCountries} 
+                deleteCountry={this.deleteCountry.bind(this)}
+                />
             </div>
         )
     }
